@@ -13,7 +13,6 @@
     <PackageTags>dot-net,http-health-check,c-sharp</PackageTags>
     <PackageReleaseNotes>HTTP health check dashboard</PackageReleaseNotes>
     <Version>1.0.0</Version>
-    <DocumentationFile>Arc.HttpHealthCheckDashboard.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
