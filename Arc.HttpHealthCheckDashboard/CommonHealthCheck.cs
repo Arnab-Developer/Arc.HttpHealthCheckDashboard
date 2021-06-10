@@ -2,10 +2,15 @@
 
 namespace Arc.HttpHealthCheckDashboard
 {
+    /// <inheritdoc cref="ICommonHealthCheck"/>
     public class CommonHealthCheck : ICommonHealthCheck
     {
         private readonly IHealthCheck _healthCheck;
 
+        /// <summary>
+        /// Creates a new object of CommonHealthCheck class.
+        /// </summary>
+        /// <param name="healthCheck">IHealthCheck type object</param>
         public CommonHealthCheck(IHealthCheck healthCheck)
         {
             _healthCheck = healthCheck;

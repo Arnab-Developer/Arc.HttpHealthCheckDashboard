@@ -4,5 +4,45 @@
         <name>Arc.HttpHealthCheckDashboard</name>
     </assembly>
     <members>
+        <member name="T:Arc.HttpHealthCheckDashboard.BaseHealthCheck">
+            <summary>
+            Base health check logic
+            </summary>
+        </member>
+        <member name="M:Arc.HttpHealthCheckDashboard.BaseHealthCheck.#ctor(System.Collections.Generic.IEnumerable{ArnabDeveloper.HttpHealthCheck.ApiDetail},Arc.HttpHealthCheckDashboard.ICommonHealthCheck)">
+            <summary>
+            Derive class needs to call this constructor 
+            </summary>
+            <param name="urlDetails">Api detail collection</param>
+            <param name="commonHealthCheck">Common health check object</param>
+        </member>
+        <member name="M:Arc.HttpHealthCheckDashboard.BaseHealthCheck.GetMatch">
+            <summary>
+            Get the api detail match condition to find api from the 
+            api detail collection
+            </summary>
+            <returns>Find condition</returns>
+        </member>
+        <member name="T:Arc.HttpHealthCheckDashboard.CommonHealthCheck">
+            <inheritdoc cref="T:Arc.HttpHealthCheckDashboard.ICommonHealthCheck"/>
+        </member>
+        <member name="M:Arc.HttpHealthCheckDashboard.CommonHealthCheck.#ctor(ArnabDeveloper.HttpHealthCheck.IHealthCheck)">
+            <summary>
+            Creates a new object of CommonHealthCheck class.
+            </summary>
+            <param name="healthCheck">IHealthCheck type object</param>
+        </member>
+        <member name="T:Arc.HttpHealthCheckDashboard.ICommonHealthCheck">
+            <summary>
+            Common health check class.
+            </summary>
+        </member>
+        <member name="M:Arc.HttpHealthCheckDashboard.ICommonHealthCheck.IsApiHealthy(ArnabDeveloper.HttpHealthCheck.ApiDetail)">
+            <summary>
+            Check the api is healthy or not.
+            </summary>
+            <param name="apiDetail">Api detail to be checked</param>
+            <returns>Returns true if the api is healthy otherwise false</returns>
+        </member>
     </members>
 </doc>
