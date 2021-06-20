@@ -1,4 +1,5 @@
 ﻿using ArnabDeveloper.HttpHealthCheck;
+using System.Threading.Tasks;
 
 namespace Arc.HttpHealthCheckDashboard
 {
@@ -11,7 +12,9 @@ namespace Arc.HttpHealthCheckDashboard
         /// Check the api is healthy or not.
         /// </summary>
         /// <param name="apiDetail">Api detail to be checked</param>
-        /// <returns>Returns true if the api is healthy otherwise false</returns>
-        bool IsApiHealthy(ApiDetail? apiDetail);
+        /// <returns>
+        /// Returns a task object representing true if the endpoint is healthy otherwise false.
+        /// </returns>
+        Task<bool> IsApiHealthyAsync(ApiDetail? apiDetail);
     }
 }

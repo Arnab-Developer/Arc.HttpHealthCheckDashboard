@@ -29,15 +29,15 @@ namespace Arc.HttpHealthCheckDashboard
             _commonHealthCheck = commonHealthCheck;
         }
 
-        Task<HealthCheckResult> Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync(
+        async Task<HealthCheckResult> Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync(
             HealthCheckContext context, CancellationToken cancellationToken)
         {
             Predicate<ApiDetail> match = GetMatch();
             ApiDetail? apiDetail = _urlDetails.ToList().Find(match);
 
-            return _commonHealthCheck.IsApiHealthy(apiDetail)
-                ? Task.FromResult(HealthCheckResult.Healthy())
-                : Task.FromResult(HealthCheckResult.Unhealthy());
+            return await _commonHealthCheck.IsApiHealthyAsync(apiDetail)
+                ? HealthCheckResult.Healthy()
+                : HealthCheckResult.Unhealthy();
         }
 
         /// <summary>
