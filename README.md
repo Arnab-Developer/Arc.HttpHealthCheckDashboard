@@ -21,19 +21,3 @@ There is a
 [dashboard app](https://github.com/Arnab-Developer/HttpHealthCheckDashboard) 
 which uses the library to check health of some http endpoints. This is to show 
 how you can use this library in your app.
-
-## Tech stack
-
-- Visual Studio 2019
-- .NET 5
-- xUnit for unit test
-- NuGet for package hosting
-
-## License
-
-[MIT License](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/blob/main/LICENSE)
-
-## Contributing
-
-Please read [this](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/blob/main/CONTRIBUTING.md) 
-for contribution related guidelines.
