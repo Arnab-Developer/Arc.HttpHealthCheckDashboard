@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Arc.HttpHealthCheckDashboardTests
@@ -14,7 +15,7 @@ namespace Arc.HttpHealthCheckDashboardTests
     public class BaseHealthCheckTest
     {
         [Fact]
-        public void Can_CheckHealth_ReturnHealthy()
+        public async Task Can_CheckHealth_ReturnHealthy()
         {
             IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
             {
@@ -29,17 +30,17 @@ namespace Arc.HttpHealthCheckDashboardTests
                 = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(true);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(true);
 
-            HealthCheckResult healthCheckResult = healthCheck.CheckHealthAsync(
-                new HealthCheckContext(), new CancellationToken()).Result;
+            HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
+                new HealthCheckContext(), new CancellationToken());
 
             Assert.Equal(HealthCheckResult.Healthy(), healthCheckResult);
         }
 
         [Fact]
-        public void Can_CheckHealth_ReturnUnHealthy()
+        public async Task Can_CheckHealth_ReturnUnHealthy()
         {
             IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
             {
@@ -54,17 +55,17 @@ namespace Arc.HttpHealthCheckDashboardTests
                 = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(false);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(false);
 
-            HealthCheckResult healthCheckResult = healthCheck.CheckHealthAsync(
-                new HealthCheckContext(), new CancellationToken()).Result;
+            HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
+                new HealthCheckContext(), new CancellationToken());
 
             Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
         }
 
         [Fact]
-        public void Can_CheckHealth_ReturnUnHealthyIfIsEnableFalse()
+        public async Task Can_CheckHealth_ReturnUnHealthyIfIsEnableFalse()
         {
             IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
             {
@@ -79,17 +80,17 @@ namespace Arc.HttpHealthCheckDashboardTests
                 = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(null))
-                .Returns(false);
+                .Setup(s => s.IsApiHealthyAsync(null))
+                .ReturnsAsync(false);
 
-            HealthCheckResult healthCheckResult = healthCheck.CheckHealthAsync(
-                new HealthCheckContext(), new CancellationToken()).Result;
+            HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
+                new HealthCheckContext(), new CancellationToken());
 
             Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
         }
 
         [Fact]
-        public void Can_CheckHealth_ReturnUnHealthyIfInvalidMatch()
+        public async Task Can_CheckHealth_ReturnUnHealthyIfInvalidMatch()
         {
             IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
             {
@@ -104,17 +105,17 @@ namespace Arc.HttpHealthCheckDashboardTests
                 = new Test1CustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(null))
-                .Returns(false);
+                .Setup(s => s.IsApiHealthyAsync(null))
+                .ReturnsAsync(false);
 
-            HealthCheckResult healthCheckResult = healthCheck.CheckHealthAsync(
-                new HealthCheckContext(), new CancellationToken()).Result;
+            HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
+                new HealthCheckContext(), new CancellationToken());
 
             Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
         }
 
         [Fact]
-        public void Can_CheckHealth_ReturnHealthyWithCustomMatch()
+        public async Task Can_CheckHealth_ReturnHealthyWithCustomMatch()
         {
             IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
             {
@@ -129,11 +130,11 @@ namespace Arc.HttpHealthCheckDashboardTests
                 = new TestAnotherCustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(true);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(true);
 
-            HealthCheckResult healthCheckResult = healthCheck.CheckHealthAsync(
-                new HealthCheckContext(), new CancellationToken()).Result;
+            HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
+                new HealthCheckContext(), new CancellationToken());
 
             Assert.Equal(HealthCheckResult.Healthy(), healthCheckResult);
         }
@@ -153,8 +154,8 @@ namespace Arc.HttpHealthCheckDashboardTests
             TestHealthCheck testHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(true);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(true);
 
             MethodInfo? GetMatchInfo = testHealthCheck.GetType()
                 .GetMethod("GetMatch", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -194,8 +195,8 @@ namespace Arc.HttpHealthCheckDashboardTests
             Test1CustomMatchHealthCheck test1CustomMatchHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(true);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(true);
 
             MethodInfo? GetMatchInfo = test1CustomMatchHealthCheck.GetType()
                 .GetMethod("GetMatch", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -235,8 +236,8 @@ namespace Arc.HttpHealthCheckDashboardTests
             Test1CustomMatchHealthCheck test1CustomMatchHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
 
             commonHealthCheckMock
-                .Setup(s => s.IsApiHealthy(urlDetails.ElementAt(2)))
-                .Returns(true);
+                .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
+                .ReturnsAsync(true);
 
             MethodInfo? GetMatchInfo = test1CustomMatchHealthCheck.GetType()
                 .GetMethod("GetMatch", BindingFlags.NonPublic | BindingFlags.Instance);

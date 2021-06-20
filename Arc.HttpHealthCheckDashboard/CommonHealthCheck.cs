@@ -1,4 +1,5 @@
 ﻿using ArnabDeveloper.HttpHealthCheck;
+using System.Threading.Tasks;
 
 namespace Arc.HttpHealthCheckDashboard
 {
@@ -16,7 +17,7 @@ namespace Arc.HttpHealthCheckDashboard
             _healthCheck = healthCheck;
         }
 
-        bool ICommonHealthCheck.IsApiHealthy(ApiDetail? apiDetail)
+        async Task<bool> ICommonHealthCheck.IsApiHealthyAsync(ApiDetail? apiDetail)
         {
             if (apiDetail == null)
             {
@@ -29,11 +30,11 @@ namespace Arc.HttpHealthCheckDashboard
                     string.IsNullOrWhiteSpace(apiDetail.ApiCredential.UserName) ||
                     string.IsNullOrWhiteSpace(apiDetail.ApiCredential.Password))
                 {
-                    isApiHealthy = _healthCheck.IsHealthy(apiDetail.Url);
+                    isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url);
                 }
                 else
                 {
-                    isApiHealthy = _healthCheck.IsHealthy(apiDetail.Url, apiDetail.ApiCredential);
+                    isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url, apiDetail.ApiCredential);
                 }
                 return isApiHealthy;
             }
