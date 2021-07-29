@@ -11,8 +11,9 @@ Use below command to install this in your .NET application.
 dotnet add package Arc.HttpHealthCheckDashboard
 ```
 
-Create your class which inherits `BaseHealthCheck` and it should work with default naming
-convention. The default naming convention is `[ClassName]HealthCheck`.
+Create separate classes for each separate http urls to be checked. Create your class which 
+inherits `BaseHealthCheck` and it should work with default naming convention. The default 
+naming convention is `[ClassName]HealthCheck`.
 
 ```csharp
 public class [ClassName]HealthCheck : BaseHealthCheck
