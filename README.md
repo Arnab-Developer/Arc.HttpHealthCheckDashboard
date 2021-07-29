@@ -3,19 +3,13 @@
 [![CI CD](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/actions/workflows/ci-cd.yml)
 ![Nuget](https://img.shields.io/nuget/v/Arc.HttpHealthCheckDashboard)
 
-This is a library for http health check dashboard.
-
-## How to install
-
-This library has been hosted in 
+This is a library for http health check dashboard. It has been hosted in 
 [NuGet](https://www.nuget.org/packages/Arc.HttpHealthCheckDashboard/). 
 Use below command to install this in your .NET application.
 
 ```
 dotnet add package Arc.HttpHealthCheckDashboard
 ```
-
-## How to use
 
 There is a 
 [dashboard app](https://github.com/Arnab-Developer/HttpHealthCheckDashboard) 
