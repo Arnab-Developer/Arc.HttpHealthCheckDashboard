@@ -1,8 +1,6 @@
 using Arc.HttpHealthCheckDashboard;
 using ArnabDeveloper.HttpHealthCheck;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Arc.HttpHealthCheckDashboardTests
