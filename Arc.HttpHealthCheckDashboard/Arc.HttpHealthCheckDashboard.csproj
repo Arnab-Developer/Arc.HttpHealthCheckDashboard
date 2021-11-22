@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <LangVersion>9</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Authors>Arnab Roy Chowdhury</Authors>
     <Description>HTTP health check dashboard</Description>
     <Copyright>Copyright (c) 2021 Arnab Roy Chowdhury</Copyright>
@@ -11,14 +11,31 @@
     <PackageProjectUrl>https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard</RepositoryUrl>
     <PackageTags>dot-net,http-health-check,c-sharp</PackageTags>
-    <PackageReleaseNotes>Upgrade ArnabDeveloper.HttpHealthCheck nuget package and use async</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>dotnet 6 upgrade</PackageReleaseNotes>
+    <Version>1.0.2</Version>
     <DocumentationFile>Arc.HttpHealthCheckDashboard.xml</DocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DocumentationFile>ArnabDeveloper.HttpHealthCheck.DI.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ArnabDeveloper.HttpHealthCheck" Version="1.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="5.0.7" />
+    <PackageReference Include="ArnabDeveloper.HttpHealthCheck" Version="1.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
   
 </Project>

@@ -1,5 +1,4 @@
 ﻿using ArnabDeveloper.HttpHealthCheck;
-using System.Threading.Tasks;
 
 namespace Arc.HttpHealthCheckDashboard
 {
