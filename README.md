@@ -1,8 +1,5 @@
 # Http health check dashboard
 
-[![CI CD](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard/actions/workflows/ci-cd.yml)
-![Nuget](https://img.shields.io/nuget/v/Arc.HttpHealthCheckDashboard)
-
 This is a library for http health check dashboard. It has been hosted in 
 [NuGet](https://www.nuget.org/packages/Arc.HttpHealthCheckDashboard/). 
 Use below command to install this in your .NET application.
@@ -18,8 +15,8 @@ naming convention is `[ClassName]HealthCheck`.
 ```csharp
 public class [ClassName]HealthCheck : BaseHealthCheck
 {
-    public [ClassName]HealthCheck(IEnumerable<ApiDetail> urlDetails, ICommonHealthCheck commonHealthCheck)
-        : base(urlDetails, commonHealthCheck)
+    public [ClassName]HealthCheck(IEnumerable<ApiDetail> urlDetails, 
+        ICommonHealthCheck commonHealthCheck) : base(urlDetails, commonHealthCheck)
     {
     }
 }

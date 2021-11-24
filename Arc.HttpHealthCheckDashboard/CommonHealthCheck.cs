@@ -1,46 +1,45 @@
 ﻿using ArnabDeveloper.HttpHealthCheck;
 
-namespace Arc.HttpHealthCheckDashboard
+namespace Arc.HttpHealthCheckDashboard;
+
+/// <inheritdoc cref="ICommonHealthCheck"/>
+public class CommonHealthCheck : ICommonHealthCheck
 {
-    /// <inheritdoc cref="ICommonHealthCheck"/>
-    public class CommonHealthCheck : ICommonHealthCheck
+    private readonly IHealthCheck _healthCheck;
+
+    /// <summary>
+    /// Creates a new object of CommonHealthCheck class.
+    /// </summary>
+    /// <param name="healthCheck">IHealthCheck type object</param>
+    public CommonHealthCheck(IHealthCheck healthCheck)
     {
-        private readonly IHealthCheck _healthCheck;
+        _healthCheck = healthCheck;
+    }
 
-        /// <summary>
-        /// Creates a new object of CommonHealthCheck class.
-        /// </summary>
-        /// <param name="healthCheck">IHealthCheck type object</param>
-        public CommonHealthCheck(IHealthCheck healthCheck)
+    async Task<bool> ICommonHealthCheck.IsApiHealthyAsync(ApiDetail? apiDetail)
+    {
+        if (apiDetail == null)
         {
-            _healthCheck = healthCheck;
+            return false;
         }
-
-        async Task<bool> ICommonHealthCheck.IsApiHealthyAsync(ApiDetail? apiDetail)
+        try
         {
-            if (apiDetail == null)
+            bool isApiHealthy = false;
+            if (apiDetail.ApiCredential is null ||
+                string.IsNullOrWhiteSpace(apiDetail.ApiCredential.UserName) ||
+                string.IsNullOrWhiteSpace(apiDetail.ApiCredential.Password))
             {
-                return false;
+                isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url);
             }
-            try
+            else
             {
-                bool isApiHealthy = false;
-                if (apiDetail.ApiCredential is null ||
-                    string.IsNullOrWhiteSpace(apiDetail.ApiCredential.UserName) ||
-                    string.IsNullOrWhiteSpace(apiDetail.ApiCredential.Password))
-                {
-                    isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url);
-                }
-                else
-                {
-                    isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url, apiDetail.ApiCredential);
-                }
-                return isApiHealthy;
+                isApiHealthy = await _healthCheck.IsHealthyAsync(apiDetail.Url, apiDetail.ApiCredential);
             }
-            catch
-            {
-                return false;
-            }
+            return isApiHealthy;
+        }
+        catch
+        {
+            return false;
         }
     }
 }

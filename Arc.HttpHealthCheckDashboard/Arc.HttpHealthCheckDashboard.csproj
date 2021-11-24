@@ -11,18 +11,17 @@
     <PackageProjectUrl>https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Arnab-Developer/Arc.HttpHealthCheckDashboard</RepositoryUrl>
     <PackageTags>dot-net,http-health-check,c-sharp</PackageTags>
-    <PackageReleaseNotes>dotnet 6 upgrade</PackageReleaseNotes>
-    <Version>1.0.2</Version>
+    <PackageReleaseNotes>nuget readme</PackageReleaseNotes>
+    <Version>1.0.3</Version>
     <DocumentationFile>Arc.HttpHealthCheckDashboard.xml</DocumentationFile>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>NuGetReadme.md</PackageReadmeFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <DocumentationFile>ArnabDeveloper.HttpHealthCheck.DI.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ArnabDeveloper.HttpHealthCheck" Version="1.0.4" />
+    <PackageReference Include="ArnabDeveloper.HttpHealthCheck" Version="1.0.5" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
@@ -31,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\NuGetReadme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
