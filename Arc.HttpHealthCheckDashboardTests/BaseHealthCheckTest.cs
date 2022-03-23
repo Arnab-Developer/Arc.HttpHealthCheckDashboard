@@ -27,17 +27,24 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
-        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
-            = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
+
+        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck =
+            new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
             .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
             .ReturnsAsync(true);
 
-        HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
-            new HealthCheckContext(), new CancellationToken());
+        HealthCheckResult healthCheckResult =
+            await healthCheck.CheckHealthAsync(new HealthCheckContext(), new CancellationToken());
 
         Assert.Equal(HealthCheckResult.Healthy(), healthCheckResult);
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Once);
+
+        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -57,17 +64,24 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
-        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
-            = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
+
+        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck =
+            new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
             .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
             .ReturnsAsync(false);
 
-        HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
-            new HealthCheckContext(), new CancellationToken());
+        HealthCheckResult healthCheckResult =
+            await healthCheck.CheckHealthAsync(new HealthCheckContext(), new CancellationToken());
 
         Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Once);
+
+        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -87,17 +101,24 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
-        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
-            = new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
+
+        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck =
+            new TestHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
             .Setup(s => s.IsApiHealthyAsync(null))
             .ReturnsAsync(false);
 
-        HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
-            new HealthCheckContext(), new CancellationToken());
+        HealthCheckResult healthCheckResult =
+            await healthCheck.CheckHealthAsync(new HealthCheckContext(), new CancellationToken());
 
         Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(null),
+                Times.Once);
+
+        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -117,17 +138,24 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
-        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
-            = new Test1CustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
+
+        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck =
+            new Test1CustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
             .Setup(s => s.IsApiHealthyAsync(null))
             .ReturnsAsync(false);
 
-        HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
-            new HealthCheckContext(), new CancellationToken());
+        HealthCheckResult healthCheckResult =
+            await healthCheck.CheckHealthAsync(new HealthCheckContext(), new CancellationToken());
 
         Assert.Equal(HealthCheckResult.Unhealthy(), healthCheckResult);
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(null),
+                Times.Once);
+
+        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -147,17 +175,24 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
-        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
-            = new TestAnotherCustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
+
+        Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck =
+            new TestAnotherCustomMatchHealthCheck(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
             .Setup(s => s.IsApiHealthyAsync(urlDetails.ElementAt(2)))
             .ReturnsAsync(true);
 
-        HealthCheckResult healthCheckResult = await healthCheck.CheckHealthAsync(
-            new HealthCheckContext(), new CancellationToken());
+        HealthCheckResult healthCheckResult =
+            await healthCheck.CheckHealthAsync(new HealthCheckContext(), new CancellationToken());
 
         Assert.Equal(HealthCheckResult.Healthy(), healthCheckResult);
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Once);
+
+        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -180,6 +215,7 @@ public class BaseHealthCheckTest
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
+
         TestHealthCheck testHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
 
         commonHealthCheckMock
@@ -207,6 +243,10 @@ public class BaseHealthCheckTest
                 Assert.True(apiDetail.IsEnable);
             }
         }
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Never);
     }
 
     [Fact]
@@ -256,6 +296,10 @@ public class BaseHealthCheckTest
                 Assert.True(apiDetail.IsEnable);
             }
         }
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Never);
     }
 
     [Fact]
@@ -296,5 +340,9 @@ public class BaseHealthCheckTest
                 Assert.Null(apiDetail);
             }
         }
+
+        commonHealthCheckMock
+            .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
+                Times.Never);
     }
 }
