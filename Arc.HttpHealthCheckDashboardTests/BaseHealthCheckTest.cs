@@ -247,8 +247,6 @@ public class BaseHealthCheckTest
         commonHealthCheckMock
             .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
                 Times.Never);
-
-        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -302,8 +300,6 @@ public class BaseHealthCheckTest
         commonHealthCheckMock
             .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
                 Times.Never);
-
-        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -348,7 +344,5 @@ public class BaseHealthCheckTest
         commonHealthCheckMock
             .Verify(m => m.IsApiHealthyAsync(urlDetails.ElementAt(2)),
                 Times.Never);
-
-        commonHealthCheckMock.VerifyNoOtherCalls();
     }
 }

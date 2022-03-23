@@ -37,6 +37,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null), 
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -61,6 +63,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, apiCredential),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -83,6 +87,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -107,6 +113,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, apiCredential),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -151,6 +159,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -175,6 +185,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -199,6 +211,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -223,6 +237,8 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -247,5 +263,7 @@ public class CommonHealthCheckTest
         _healthCheckMock
             .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
+
+        _healthCheckMock.VerifyNoOtherCalls();
     }
 }
