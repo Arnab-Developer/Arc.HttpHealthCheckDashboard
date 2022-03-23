@@ -4,6 +4,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Moq;
 using System.Reflection;
 using Xunit;
+using Tynamix.ObjectFiller;
 
 namespace Arc.HttpHealthCheckDashboardTests;
 
@@ -13,12 +14,19 @@ public class BaseHealthCheckTest
     public async Task Can_CheckHealth_ReturnHealthy()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("Test", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
@@ -38,12 +46,19 @@ public class BaseHealthCheckTest
     public async Task Can_CheckHealth_ReturnUnHealthy()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("Test", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
@@ -63,12 +78,19 @@ public class BaseHealthCheckTest
     public async Task Can_CheckHealth_ReturnUnHealthyIfIsEnableFalse()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), false),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("Test", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), false),
+
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
@@ -88,12 +110,19 @@ public class BaseHealthCheckTest
     public async Task Can_CheckHealth_ReturnUnHealthyIfInvalidMatch()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("Test", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
@@ -113,12 +142,19 @@ public class BaseHealthCheckTest
     public async Task Can_CheckHealth_ReturnHealthyWithCustomMatch()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("Test", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck healthCheck
@@ -138,12 +174,12 @@ public class BaseHealthCheckTest
     public void Can_GetMatch_ReturnCorrectMatch()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
+            new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
+            new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
+            new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         TestHealthCheck testHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
@@ -179,12 +215,12 @@ public class BaseHealthCheckTest
     public void Can_GetMatch_ReturnCorrectCustomMatch()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test1", "url3", new ApiCredential("user3", "pass3"), true),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
+            new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
+            new ApiDetail("Test1", "url3", new ApiCredential("user3", "pass3"), true),
+            new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Test1CustomMatchHealthCheck test1CustomMatchHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
@@ -220,12 +256,16 @@ public class BaseHealthCheckTest
     public void Can_GetMatch_ReturnCorrectCustomDisableMatch()
     {
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
-            {
-                new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-                new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-                new ApiDetail("Test1", "url3", new ApiCredential("user3", "pass3"), false),
-                new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
-            };
+        {
+            new ApiDetail("api1", "url1",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+            new ApiDetail("api2", "url2",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true),
+            new ApiDetail("Test1", "url3",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), false),
+            new ApiDetail("api4", "url4",
+                new ApiCredential(Randomizer<string>.Create(), Randomizer<string>.Create()), true)
+        };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
         Test1CustomMatchHealthCheck test1CustomMatchHealthCheck = new(urlDetails, commonHealthCheckMock.Object);
