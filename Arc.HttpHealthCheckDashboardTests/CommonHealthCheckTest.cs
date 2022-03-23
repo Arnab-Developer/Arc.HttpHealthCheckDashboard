@@ -21,9 +21,9 @@ public class CommonHealthCheckTest
     public async Task Can_IsApiHealthyAsync_ReturnTrueForOnlyUrl()
     {
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            null, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            null,
             true);
 
         _healthCheckMock
@@ -33,9 +33,9 @@ public class CommonHealthCheckTest
         bool IsApiHealthyAsync = await _commonHealthCheck.IsApiHealthyAsync(apiDetail);
 
         Assert.True(IsApiHealthyAsync);
-        
+
         _healthCheckMock
-            .Verify(m => m.IsHealthyAsync(apiDetail.Url, null), 
+            .Verify(m => m.IsHealthyAsync(apiDetail.Url, null),
                 Times.Once);
 
         _healthCheckMock.VerifyNoOtherCalls();
@@ -47,9 +47,9 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(Randomizer<string>.Create(), Randomizer<string>.Create());
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            apiCredential, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            apiCredential,
             true);
 
         _healthCheckMock
@@ -71,9 +71,9 @@ public class CommonHealthCheckTest
     public async Task Can_IsApiHealthyAsync_ReturnFalseForOnlyUrl()
     {
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            null, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            null,
             true);
 
         _healthCheckMock
@@ -97,9 +97,9 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(Randomizer<string>.Create(), Randomizer<string>.Create());
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            apiCredential, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            apiCredential,
             true);
 
         _healthCheckMock
@@ -121,9 +121,9 @@ public class CommonHealthCheckTest
     public async Task Can_IsApiHealthyAsync_ReturnFalseForNullApiDetail()
     {
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            null, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            null,
             true);
 
         _healthCheckMock
@@ -143,9 +143,9 @@ public class CommonHealthCheckTest
     public async Task Can_IsApiHealthyAsync_ReturnFalseForException()
     {
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            null, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            null,
             true);
 
         _healthCheckMock
@@ -169,7 +169,7 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(string.Empty, string.Empty);
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
+            Randomizer<string>.Create(),
             new RandomUri().GetValue().AbsoluteUri,
             apiCredential,
             true);
@@ -195,9 +195,9 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(string.Empty, string.Empty);
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            apiCredential, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            apiCredential,
             true);
 
         _healthCheckMock
@@ -221,9 +221,9 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(" ", " ");
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            apiCredential, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            apiCredential,
             true);
 
         _healthCheckMock
@@ -247,9 +247,9 @@ public class CommonHealthCheckTest
         ApiCredential apiCredential = new(" ", " ");
 
         ApiDetail apiDetail = new(
-            Randomizer<string>.Create(), 
-            new RandomUri().GetValue().AbsoluteUri, 
-            apiCredential, 
+            Randomizer<string>.Create(),
+            new RandomUri().GetValue().AbsoluteUri,
+            apiCredential,
             true);
 
         _healthCheckMock
