@@ -1,6 +1,7 @@
 using Arc.HttpHealthCheckDashboard;
 using ArnabDeveloper.HttpHealthCheck;
 using Moq;
+using Tynamix.ObjectFiller;
 using Xunit;
 
 namespace Arc.HttpHealthCheckDashboardTests;
@@ -33,7 +34,7 @@ public class CommonHealthCheckTest
     [Fact]
     public async Task Can_IsApiHealthyAsync_ReturnTrueForUrlWithCredential()
     {
-        ApiCredential apiCredential = new("demo user", "demo pass");
+        ApiCredential apiCredential = new(Randomizer<string>.Create(), Randomizer<string>.Create());
         ApiDetail apiDetail = new("demo name", "demo url", apiCredential, true);
 
         _healthCheckMock
@@ -62,7 +63,7 @@ public class CommonHealthCheckTest
     [Fact]
     public async Task Can_IsApiHealthyAsync_ReturnFalseForUrlWithCredential()
     {
-        ApiCredential apiCredential = new("demo user", "demo pass");
+        ApiCredential apiCredential = new(Randomizer<string>.Create(), Randomizer<string>.Create());
         ApiDetail apiDetail = new("demo name", "demo url", apiCredential, true);
 
         _healthCheckMock
