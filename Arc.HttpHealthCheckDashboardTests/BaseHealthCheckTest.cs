@@ -163,12 +163,20 @@ public class BaseHealthCheckTest
     [Fact]
     public void Can_GetMatch_ReturnCorrectMatch()
     {
+        string randomUserName = Randomizer<string>.Create();
+        string randomPwd = Randomizer<string>.Create();
+
+        ApiCredential apiCredential1 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential2 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential3 = new(randomUserName, randomPwd);
+        ApiCredential apiCredential4 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
         {
-            new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-            new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-            new ApiDetail("Test", "url3", new ApiCredential("user3", "pass3"), true),
-            new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
+            new ApiDetail("api1", "url1", apiCredential1, true),
+            new ApiDetail("api2", "url2", apiCredential2, true),
+            new ApiDetail("Test", "url3", apiCredential3, true),
+            new ApiDetail("api4", "url4", apiCredential4, true)
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
@@ -194,8 +202,8 @@ public class BaseHealthCheckTest
                 Assert.Equal("Test", apiDetail!.Name);
                 Assert.Equal("url3", apiDetail.Url);
                 Assert.NotNull(apiDetail.ApiCredential);
-                Assert.Equal("user3", apiDetail.ApiCredential!.UserName);
-                Assert.Equal("pass3", apiDetail.ApiCredential!.Password);
+                Assert.Equal(randomUserName, apiDetail.ApiCredential!.UserName);
+                Assert.Equal(randomPwd, apiDetail.ApiCredential!.Password);
                 Assert.True(apiDetail.IsEnable);
             }
         }
@@ -204,12 +212,20 @@ public class BaseHealthCheckTest
     [Fact]
     public void Can_GetMatch_ReturnCorrectCustomMatch()
     {
+        string randomUserName = Randomizer<string>.Create();
+        string randomPwd = Randomizer<string>.Create();
+
+        ApiCredential apiCredential1 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential2 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential3 = new(randomUserName, randomPwd);
+        ApiCredential apiCredential4 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+
         IEnumerable<ApiDetail> urlDetails = new List<ApiDetail>()
         {
-            new ApiDetail("api1", "url1", new ApiCredential("user1", "pass1"), true),
-            new ApiDetail("api2", "url2", new ApiCredential("user2", "pass2"), true),
-            new ApiDetail("Test1", "url3", new ApiCredential("user3", "pass3"), true),
-            new ApiDetail("api4", "url4", new ApiCredential("user4", "pass4"), true)
+            new ApiDetail("api1", "url1", apiCredential1, true),
+            new ApiDetail("api2", "url2", apiCredential2, true),
+            new ApiDetail("Test1", "url3", apiCredential3, true),
+            new ApiDetail("api4", "url4", apiCredential4, true)
         };
 
         Mock<ICommonHealthCheck> commonHealthCheckMock = new();
@@ -235,8 +251,8 @@ public class BaseHealthCheckTest
                 Assert.Equal("Test1", apiDetail!.Name);
                 Assert.Equal("url3", apiDetail.Url);
                 Assert.NotNull(apiDetail.ApiCredential);
-                Assert.Equal("user3", apiDetail.ApiCredential!.UserName);
-                Assert.Equal("pass3", apiDetail.ApiCredential!.Password);
+                Assert.Equal(randomUserName, apiDetail.ApiCredential!.UserName);
+                Assert.Equal(randomPwd, apiDetail.ApiCredential!.Password);
                 Assert.True(apiDetail.IsEnable);
             }
         }
