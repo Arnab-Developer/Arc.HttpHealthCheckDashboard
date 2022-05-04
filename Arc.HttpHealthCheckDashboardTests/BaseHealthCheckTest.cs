@@ -202,7 +202,7 @@ public class BaseHealthCheckTest
         string randomPwd = Randomizer<string>.Create();
 
         ApiCredential apiCredential1 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
-        ApiCredential apiCredential2 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential2 = new(Randomizer<string>.Create(), "#abcd123");
         ApiCredential apiCredential3 = new(randomUserName, randomPwd);
         ApiCredential apiCredential4 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
 
