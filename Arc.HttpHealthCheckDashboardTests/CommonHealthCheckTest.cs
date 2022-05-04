@@ -44,7 +44,7 @@ public class CommonHealthCheckTest
     [Fact]
     public async Task Can_IsApiHealthyAsync_ReturnTrueForUrlWithCredential()
     {
-        ApiCredential apiCredential = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential = new("u1", "p1");
 
         ApiDetail apiDetail = new(
             Randomizer<string>.Create(),
