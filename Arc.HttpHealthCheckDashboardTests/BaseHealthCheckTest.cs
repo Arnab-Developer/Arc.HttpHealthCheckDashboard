@@ -13,7 +13,7 @@ public class BaseHealthCheckTest
     [Fact]
     public async Task Can_CheckHealth_ReturnHealthy()
     {
-        ApiCredential apiCredential1 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
+        ApiCredential apiCredential1 = new(Randomizer<string>.Create(), "password1");
         ApiCredential apiCredential2 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
         ApiCredential apiCredential3 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
         ApiCredential apiCredential4 = new(Randomizer<string>.Create(), Randomizer<string>.Create());
