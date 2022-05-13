@@ -15,4 +15,5 @@ public interface ICommonHealthCheck
     /// Returns a task object representing true if the endpoint is healthy otherwise false.
     /// </returns>
     Task<bool> IsApiHealthyAsync(ApiDetail? apiDetail);
+    
 }
